@@ -3,11 +3,17 @@ const express = require("express");
 const notesRouter = require("./routes/Routes");
 const connectDB = require("./config/db");
 const rateLimiter = require("./middleware/rateLimiter");
+const cors = require("cors");
 
 const PORT = process.env.PORT || 5000;
 
 const app = express();
 
+app.use(
+  cors({
+    origin: "http://localhost:5173",
+  })
+);
 app.use(express.json());
 app.use(rateLimiter);
 
